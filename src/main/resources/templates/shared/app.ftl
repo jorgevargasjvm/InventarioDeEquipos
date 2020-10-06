@@ -17,20 +17,27 @@
     <header>
 	  <!-- Fixed navbar -->
 	  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-	    <a class="navbar-brand" href="/">Inventario De Equipos</a>
+	    <a class="navbar-brand" href="/"><@spring.message "application.name" /></a>
 	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 	      <span class="navbar-toggler-icon"></span>
 	    </button>
 	    <div class="collapse navbar-collapse" id="navbarCollapse">
 	      <ul class="navbar-nav ml-auto">
 			<li class="nav-item dropdown">
-		        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		          Dropdown
-		        </a>
-		        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-		          <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
-		        </div>
-	      	</li>
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<@spring.message "navbar.title.languages" />
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="?lang=es"><@spring.message "navbar.spanish" /></a>
+					<a class="dropdown-item" href="?lang=en"><@spring.message "navbar.english" /></a>
+				</div>
+			</li>
+	  		<li class="nav-item">
+	    		<a class="nav-link" href="/login"><@spring.message "navbar.login" /></a>
+	  		</li>
+	  		<li class="nav-item">
+	    		<a class="nav-link" href="/register"><@spring.message "navbar.register" /></a>
+	  		</li>
 	      </ul>
 	    </div>
 	  </nav>
