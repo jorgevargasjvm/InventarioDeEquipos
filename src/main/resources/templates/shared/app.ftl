@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
 
-    <title>Inventario De Equipos</title>
+    <title><@spring.message "application.name.short" /></title>
   </head>
   <body class="d-flex flex-column h-100">
     
@@ -47,7 +47,7 @@
 	
 	<footer class="footer mt-auto py-3">
 	  <div class="container">
-	    <span class="text-muted"><b>Version</b> 0.1.0</span>
+	    <span class="text-muted"><b><@spring.message "footer.version" /></b> 0.1.0</span>
 	  </div>
 	</footer>
 
