@@ -19,7 +19,7 @@ import com.inventario.equipos.InventarioDeEquipos.services.CustomUserDetailsServ
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private UserDetailsService userDetailsService;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -28,7 +28,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/").permitAll()
 				.antMatchers("/welcome").permitAll()
 				.antMatchers("/login").permitAll()
-				.antMatchers("/register").permitAll()
 				.antMatchers("/home/**").hasAuthority("ADMIN")
 				.anyRequest().authenticated()
 				.and()
@@ -36,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginPage("/login")
 				.defaultSuccessUrl("/home")
 				.failureUrl("/login?error=true")
-				.usernameParameter("user")
+				.usernameParameter("username")
 				.passwordParameter("password")
 				.and()
 			.logout()
@@ -50,17 +49,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/css/**", "/js/**", "/img/**");
+        web.ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/h2-console/**");
     }
 	
 	@Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        UserDetailsService userDetailsService = userDetailsService();
-        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
+        auth.userDetailsService(userDetailsService).passwordEncoder(getPasswordEncoder());
     }
 	
 	@Bean
-	public UserDetailsService userDetailsService() {
-		return new CustomUserDetailsService();
-	}
+    public BCryptPasswordEncoder getPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+	
 }

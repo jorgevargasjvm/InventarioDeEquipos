@@ -1,14 +1,10 @@
 package com.inventario.equipos.InventarioDeEquipos.models;
 
-import java.util.Set;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,13 +16,19 @@ public class User {
     private Long id;
 	
     private String username;
+
+    @Column(nullable = true)
+    private String identification;
+
+    @Column(nullable = true)
+    private String photo;
     
+    @Column(nullable = true)
     private String password;
     
-    @ManyToMany
-    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), 
-    	inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    private Set<Role> roles;
+    private boolean active;
+    
+    private String roles;
 
 	public User() {
 		
@@ -54,12 +56,20 @@ public class User {
 		this.username = username;
 	}
 
-	public Set<Role> getRoles() {
-		return roles;
+	public String getIdentification() {
+		return identification;
 	}
 
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
+	public void setIdentification(String identification) {
+		this.identification = identification;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 	public String getPassword() {
@@ -68,6 +78,22 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public String getRoles() {
+		return roles;
+	}
+
+	public void setRoles(String roles) {
+		this.roles = roles;
 	}
 	
 }
